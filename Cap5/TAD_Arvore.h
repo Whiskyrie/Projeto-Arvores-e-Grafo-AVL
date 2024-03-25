@@ -9,7 +9,8 @@ typedef struct nohArvore
 {
     void *info;
     struct nohArvore *esquerda;
-    struct nohArvore *direita
+    struct nohArvore *direita;
+
 } NohArvore, *pNohArvore;
 
 typedef struct nohArvore NohArvore;

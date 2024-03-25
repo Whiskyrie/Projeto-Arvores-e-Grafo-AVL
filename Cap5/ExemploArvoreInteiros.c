@@ -48,6 +48,16 @@ int main()
             printf("Quantidade de Nos: %d\n", QuantidadeNohs(pArvoreInt));
             break;
         case 6:
+            printf("Digite o valor a ser buscado: ");
+            scanf("%d", &valorBuscado);
+            if (BuscarInfo(pArvoreInt, AlocaInt(valorBuscado), ComparaInt))
+            {
+                printf("Valor %d encontrado na arvore!\n", valorBuscado);
+            }
+            else
+            {
+                printf("Valor %d nao encontrado na arvore!\n", valorBuscado);
+            }
             break;
         case 7:
             printf("Digite o valor a ser excluido: ");
