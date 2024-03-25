@@ -9,7 +9,7 @@ typedef struct nohArvore
 {
     void *info;
     struct nohArvore *esquerda;
-    struct nohArvore *direita;
+    struct nohArvore *direita
 } NohArvore, *pNohArvore;
 
 typedef struct nohArvore NohArvore;
@@ -46,5 +46,7 @@ int EhFolha(pDArvore, void *, FuncaoComparacao);
 int ArvoreVazia(pDArvore);
 pNohArvore EncontrarMenor(pNohArvore raiz);
 void DesenhaArvore(pDArvore, FuncaoImpressao);
+void Balancear(pDArvore arvore);
+void RecalcularFB(pDArvore arvore);
 
 #endif

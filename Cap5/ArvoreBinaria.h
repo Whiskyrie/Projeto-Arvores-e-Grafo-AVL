@@ -29,6 +29,4 @@
 
 #include "Operacoes/ArvoreBinaria/12_EncontraMenor.h"
 
-#include "Operacoes/ArvoreNaria/2_IncluirInfo.h"
-
 #endif
