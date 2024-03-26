@@ -29,4 +29,8 @@
 
 #include "Operacoes/ArvoreBinaria/12_EncontraMenor.h"
 
+#include "Operacoes/ArvoreBinaria/13_Balancear.h"
+
+#include "Operacoes/ArvoreBinaria/14_FatorDeBalanceamento.h"
+
 #endif

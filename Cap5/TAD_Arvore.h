@@ -10,6 +10,7 @@ typedef struct nohArvore
     void *info;
     struct nohArvore *esquerda;
     struct nohArvore *direita;
+    int fb;
 
 } NohArvore, *pNohArvore;
 
@@ -32,6 +33,7 @@ pDArvore CriarArvore(int);
 void IncluirInfo(pDArvore, void *, FuncaoComparacao);
 int ExcluirInfo(pDArvore, void *, FuncaoComparacao);
 pNohArvore BuscarInfo(pDArvore, void *, FuncaoComparacao);
+int CalcularFatorBalanceamento(pNohArvore raiz);
 
 /* percursos */
 void EmOrdem(pNohArvore, FuncaoImpressao);
