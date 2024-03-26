@@ -33,7 +33,7 @@ pDArvore CriarArvore(int);
 void IncluirInfo(pDArvore, void *, FuncaoComparacao);
 int ExcluirInfo(pDArvore, void *, FuncaoComparacao);
 pNohArvore BuscarInfo(pDArvore, void *, FuncaoComparacao);
-int CalcularFatorBalanceamento(pNohArvore raiz);
+void CalcularFatorBalanceamentoRecursivo(pNohArvore raiz);
 
 /* percursos */
 void EmOrdem(pNohArvore, FuncaoImpressao);
@@ -49,7 +49,4 @@ int EhFolha(pDArvore, void *, FuncaoComparacao);
 int ArvoreVazia(pDArvore);
 pNohArvore EncontrarMenor(pNohArvore raiz);
 void DesenhaArvore(pDArvore, FuncaoImpressao);
-void Balancear(pDArvore arvore);
-void RecalcularFB(pDArvore arvore);
-
 #endif

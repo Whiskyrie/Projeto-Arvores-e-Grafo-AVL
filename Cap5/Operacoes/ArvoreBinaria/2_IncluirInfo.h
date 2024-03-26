@@ -1,9 +1,44 @@
 #ifndef CRIAR_ARVORE_BINARIA_H
 #define CRIAR_ARVORE_BINARIA_H
 
+//---------------------------------------
+pNohArvore RotacaoDireita(pNohArvore raiz)
+{
+    pNohArvore u;
+    u = raiz->esquerda;
+    raiz->esquerda = u->direita;
+    u->direita = raiz;
+    return u;
+}
+
+//---------------------------------------
+pNohArvore RotacaoEsquerda(pNohArvore raiz)
+{
+    pNohArvore u;
+    u = raiz->direita;
+    raiz->direita = u->esquerda;
+    u->esquerda = raiz;
+    return u;
+}
+
+//---------------------------------------
+pNohArvore RotacaoEsquerdaDireita(pNohArvore raiz)
+{
+    raiz->esquerda = RotacaoEsquerda(raiz->esquerda);
+    return RotacaoDireita(raiz);
+}
+
+//---------------------------------------
+pNohArvore RotacaoDireitaEsquerda(pNohArvore raiz)
+{
+    raiz->direita = RotacaoDireita(raiz->direita);
+    return RotacaoEsquerda(raiz);
+}
+
 /* --------------------------*/
 pNohArvore IncluirInfoRecursivo(pNohArvore raiz, void *info, FuncaoComparacao pfc)
 {
+
     if (raiz == NULL)
     {
         pNohArvore pnh = malloc(sizeof(NohArvore));
@@ -23,28 +58,50 @@ pNohArvore IncluirInfoRecursivo(pNohArvore raiz, void *info, FuncaoComparacao pf
         raiz->direita = IncluirInfoRecursivo(raiz->direita, info, pfc);
     }
 
-    CalcularFatorBalanceamentoRecursivo(raiz);
+    raiz->fb = AlturaRecursiva(raiz->direita) - AlturaRecursiva(raiz->esquerda);
 
-    if (raiz->fb == 2)
+    if (raiz->fb == 2 || raiz->fb == -2)
     {
-        if (CalcularFatorBalanceamento(raiz->direita) >= 0)
+
+        if (raiz->fb == 2)
         {
-            raiz = RotacaoEsquerda(raiz);
+            if ((raiz->direita != NULL && (raiz->direita->fb == 1 || raiz->direita->fb == 0)) ||
+                (raiz->esquerda != NULL && (raiz->esquerda->fb == 1 || raiz->esquerda->fb == 0)))
+            {
+
+                pNohArvore novaRaiz = RotacaoEsquerda(raiz);
+                CalcularFatorBalanceamentoRecursivo(novaRaiz);
+                return novaRaiz;
+            }
+
+            if ((raiz->direita != NULL && raiz->direita->fb == -1) ||
+                (raiz->esquerda != NULL && raiz->esquerda->fb == -1))
+            {
+
+                pNohArvore novaRaiz = RotacaoDireitaEsquerda(raiz);
+                CalcularFatorBalanceamentoRecursivo(novaRaiz);
+                return novaRaiz;
+            }
         }
-        else
+
+        if (raiz->fb == -2)
         {
-            raiz = RotacaoDireitaEsquerda(raiz);
-        }
-    }
-    else if (raiz->fb == -2)
-    {
-        if (CalcularFatorBalanceamento(raiz->esquerda) <= 0)
-        {
-            raiz = RotacaoDireita(raiz);
-        }
-        else
-        {
-            raiz = RotacaoEsquerdaDireita(raiz);
+            if ((raiz->direita != NULL && (raiz->direita->fb == -1 || raiz->direita->fb == 0)) ||
+                (raiz->esquerda != NULL && (raiz->esquerda->fb == -1 || raiz->esquerda->fb == 0)))
+            {
+                printf(" -> Rotacao simples Direita <- ");
+
+                pNohArvore novaRaiz = RotacaoDireita(raiz);
+                CalcularFatorBalanceamentoRecursivo(novaRaiz);
+                return novaRaiz;
+            }
+
+            if ((raiz->direita != NULL && raiz->direita->fb == 1) || (raiz->esquerda != NULL && raiz->esquerda->fb == 1))
+            {
+                pNohArvore novaRaiz = RotacaoEsquerdaDireita(raiz);
+                CalcularFatorBalanceamentoRecursivo(novaRaiz);
+                return novaRaiz;
+            }
         }
     }
 
@@ -54,6 +111,7 @@ pNohArvore IncluirInfoRecursivo(pNohArvore raiz, void *info, FuncaoComparacao pf
 /* ----------------------------------------------------------*/
 void IncluirInfo(pDArvore arvore, void *info, FuncaoComparacao pfc)
 {
+
     printf("\n --- Incluindo info: %d ---\n", *((int *)info));
     arvore->raiz = IncluirInfoRecursivo(arvore->raiz, info, pfc);
 }

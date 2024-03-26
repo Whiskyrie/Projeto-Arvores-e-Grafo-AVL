@@ -3,17 +3,18 @@
 
 void CalcularFatorBalanceamentoRecursivo(pNohArvore raiz)
 {
+
     if (raiz == NULL)
         return;
+
     raiz->fb = AlturaRecursiva(raiz->direita) - AlturaRecursiva(raiz->esquerda);
     CalcularFatorBalanceamentoRecursivo(raiz->esquerda);
     CalcularFatorBalanceamentoRecursivo(raiz->direita);
 }
 
-int CalcularFatorBalanceamento(pNohArvore raiz)
+void CalcularFatorBalanceamento(pDArvore arvore)
 {
-    CalcularFatorBalanceamentoRecursivo(raiz);
-    return raiz->fb;
+    CalcularFatorBalanceamentoRecursivo(arvore->raiz);
 }
 
 #endif
