@@ -10,7 +10,19 @@ int ComparaInt(void *info1, void *info2)
 {
    int *p1 = (int *)info1;
    int *p2 = (int *)info2;
-   return *p2 - *p1;
+
+   if (*p1 < *p2)
+   {
+      return -1; // info1 é menor que info2
+   }
+   else if (*p1 > *p2)
+   {
+      return 1; // info1 é maior que info2
+   }
+   else
+   {
+      return 0; // info1 é igual a info2
+   }
 }
 /* ---------------------------------------- */
 void ImprimeInt(void *info)

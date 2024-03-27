@@ -8,19 +8,32 @@ pNohArvore BuscarInfoRecursivo(pNohArvore raiz, void *info, FuncaoComparacao pfc
         return NULL;
     }
 
-    int comparacao = pfc(raiz->info, info);
+    int comparacao = pfc(info, raiz->info);
+
     if (comparacao == 0)
     {
         return raiz;
     }
     else if (comparacao < 0)
     {
-        return BuscarInfoRecursivo(raiz->direita, info, pfc);
+        pNohArvore nodoDireito = BuscarInfoRecursivo(raiz->direita, info, pfc);
+        if (nodoDireito != NULL)
+        {
+            return nodoDireito;
+        }
+        // Verificar e rebalancear a árvore AVL, se necessário
     }
     else
     {
-        return BuscarInfoRecursivo(raiz->esquerda, info, pfc);
+        pNohArvore nodoEsquerdo = BuscarInfoRecursivo(raiz->esquerda, info, pfc);
+        if (nodoEsquerdo != NULL)
+        {
+            return nodoEsquerdo;
+        }
+        // Verificar e rebalancear a árvore AVL, se necessário
     }
+
+    return NULL;
 }
 
 pNohArvore BuscarInfo(pDArvore arvore, void *info, FuncaoComparacao pfc)
