@@ -1,16 +1,22 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "Utils.h"
 #include "ArvoreBinariaBalanceada.h"
 
-pDArvore ConstroiArvore(int dados[], int tam)
+pDArvore ConstroiArvore(int raiz)
 {
+    pDArvore arvore = CriarArvore(raiz);
+    int num;
 
-    pDArvore arvore = CriarArvore(2);
-    int i;
-    for (i = 0; i < tam; i++)
+    printf("Digite os valores para inserir na arvore (0 para sair): ");
+    scanf("%d", &num);
+
+    while (num != 0)
     {
-        IncluirInfo(arvore, AlocaInt(dados[i]), ComparaInt);
+        IncluirInfo(arvore, AlocaInt(num), ComparaInt);
         DesenhaArvore(arvore, ImprimeInt);
+        printf("Digite os valores para inserir na arvore (0 para sair): ");
+        scanf("%d", &num);
     }
 
     return arvore;
@@ -18,16 +24,63 @@ pDArvore ConstroiArvore(int dados[], int tam)
 
 int main()
 {
+    pDArvore pArvoreInt;
+    int raiz, opcao, valorBuscado;
 
-    int ex1[] = {5, 10, 3, 7, 6};             // rotacao simples - direita
-    int ex2[] = {5, 10, 3, 12, 14};           // rotacao simples - esquerda
-    int ex3[] = {5, 10, 3, 7, 8};             // rotacao dupla - esquerda/direita
-    int ex4[] = {5, 10, 3, 4, 12, 9, 14, 13}; // rotacao dupla - direita/esquerda
-    int ex5[] = {5, 10, 3, 4, 12, 9, 14};     // N�o precisa rotacionar
+    printf("Informe a raiz da arvore: ");
+    scanf("%d", &raiz);
+    pArvoreInt = ConstroiArvore(raiz);
 
-    // ConstroiArvore(ex1, 5);
-    // ConstroiArvore(ex2, 5);
-    ConstroiArvore(ex3, 5);
-    // ConstroiArvore(ex4, 8);
-    // ConstroiArvore(ex5, 7);
+    do
+    {
+        system("cls"); // Limpa o console a cada seleção
+        printf("\nMenu:\n");
+        printf("1. Desenhar Arvore\n");
+        printf("2. Calcular Altura da Arvore\n");
+        printf("3. Calcular Quantidade de Folhas\n");
+        printf("4. Calcular Quantidade de Nos\n");
+        printf("5. Buscar Valor na Arvore\n");
+        printf("0. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        case 1:
+            DesenhaArvore(pArvoreInt, ImprimeInt);
+            break;
+        case 2:
+            printf("Altura da Arvore: %d\n", Altura(pArvoreInt));
+            break;
+        case 3:
+            printf("Quantidade de Folhas: %d\n", QuantidadeFolhas(pArvoreInt));
+            break;
+        case 4:
+            printf("Quantidade de Nos: %d\n", QuantidadeNohs(pArvoreInt));
+            break;
+        case 5:
+            printf("Digite o valor a ser buscado: ");
+            scanf("%d", &valorBuscado);
+            if (BuscarInfo(pArvoreInt, AlocaInt(valorBuscado), ComparaInt))
+            {
+                printf("Valor %d encontrado na arvore!\n", valorBuscado);
+            }
+            else
+            {
+                printf("Valor %d nao encontrado na arvore!\n", valorBuscado);
+            }
+            break;
+        case 0:
+            printf("Saindo...\n");
+            break;
+        default:
+            printf("Opcao invalida!\n");
+        }
+
+        printf("\nAperte Qualquer tecla Para Continuar.");
+        getchar();
+        getchar(); // Pausa o programa até que o usuário pressione uma tecla
+    } while (opcao != 0);
+
+    return 0;
 }
