@@ -42,11 +42,13 @@ void PosOrdem(pNohArvore, FuncaoImpressao);
 
 int Altura(pDArvore);
 int Grau(pDArvore);
+pNohArvore BalancearArvore(pNohArvore raiz);
 int Nivel(pDArvore, void *, FuncaoComparacao);
 int QuantidadeFolhas(pDArvore);
 int QuantidadeNohs(pDArvore);
 int EhFolha(pDArvore, void *, FuncaoComparacao);
 int ArvoreVazia(pDArvore);
 pNohArvore EncontrarMenor(pNohArvore raiz);
+pNohArvore EncontrarMaior(pNohArvore raiz);
 void DesenhaArvore(pDArvore, FuncaoImpressao);
 #endif

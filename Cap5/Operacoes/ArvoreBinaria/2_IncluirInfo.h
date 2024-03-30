@@ -111,9 +111,14 @@ pNohArvore IncluirInfoRecursivo(pNohArvore raiz, void *info, FuncaoComparacao pf
 /* ----------------------------------------------------------*/
 void IncluirInfo(pDArvore arvore, void *info, FuncaoComparacao pfc)
 {
-
-    printf("\n --- Incluindo info: %d ---\n", *((int *)info));
-    arvore->raiz = IncluirInfoRecursivo(arvore->raiz, info, pfc);
+    if (arvore->raiz == NULL || pfc(arvore->raiz->info, info) != 0)
+    {
+        printf("\n --- Incluindo info: %d ---\n", *((int *)info));
+        arvore->raiz = IncluirInfoRecursivo(arvore->raiz, info, pfc);
+    }
+    else
+    {
+        printf("O numero %d ja existe na arvore ou e a raiz. Insira outro numero.\n", *((int *)info));
+    }
 }
-
 #endif

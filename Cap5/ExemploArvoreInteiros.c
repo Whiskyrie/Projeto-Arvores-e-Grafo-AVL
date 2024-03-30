@@ -40,6 +40,7 @@ int main()
         printf("3. Calcular Quantidade de Folhas\n");
         printf("4. Calcular Quantidade de Nos\n");
         printf("5. Buscar Valor na Arvore\n");
+        printf("6. Remover Valor da Arvore\n");
         printf("0. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -68,6 +69,18 @@ int main()
             else
             {
                 printf("Valor %d nao encontrado na arvore!\n", valorBuscado);
+            }
+            break;
+        case 6:
+            printf("Digite o valor a ser removido: ");
+            scanf("%d", &valorBuscado);
+            if (ExcluirInfo(pArvoreInt, AlocaInt(valorBuscado), ComparaInt) == 0)
+            {
+                printf("Valor %d removido com sucesso!\n", valorBuscado);
+            }
+            else
+            {
+                printf("Falha ao remover o valor %d.\n", valorBuscado);
             }
             break;
         case 0:

@@ -6,6 +6,7 @@
         "0_struct_descritor.h": "c",
         "1_criararvore.h": "c",
         "0_struct_arvore.h": "c",
-        "3_excluirinfo.h": "c"
+        "3_excluirinfo.h": "c",
+        "15_balancear.h": "c"
     }
 }
