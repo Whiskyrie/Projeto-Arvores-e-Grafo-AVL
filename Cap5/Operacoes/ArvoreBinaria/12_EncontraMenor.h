@@ -6,12 +6,13 @@ pNohArvore EncontrarMenor(pNohArvore raiz)
     if (raiz == NULL)
         return NULL;
 
-    if (raiz->esquerda == NULL)
+    pNohArvore menor = raiz;
+    while (menor->esquerda != NULL)
     {
-        return raiz;
+        menor = menor->esquerda;
     }
 
-    return EncontrarMenor(raiz->esquerda);
+    return menor;
 }
 
 #endif

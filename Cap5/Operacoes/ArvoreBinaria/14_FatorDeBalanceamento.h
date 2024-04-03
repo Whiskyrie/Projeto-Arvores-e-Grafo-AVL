@@ -3,11 +3,14 @@
 
 void CalcularFatorBalanceamentoRecursivo(pNohArvore raiz)
 {
-
     if (raiz == NULL)
         return;
 
-    raiz->fb = AlturaRecursiva(raiz->direita) - AlturaRecursiva(raiz->esquerda);
+    int alturaEsquerda = AlturaRecursiva(raiz->esquerda);
+    int alturaDireita = AlturaRecursiva(raiz->direita);
+
+    raiz->fb = alturaDireita - alturaEsquerda;
+
     CalcularFatorBalanceamentoRecursivo(raiz->esquerda);
     CalcularFatorBalanceamentoRecursivo(raiz->direita);
 }

@@ -5,7 +5,6 @@ pNohArvore ExcluirInfoRecursivo(pNohArvore raiz, void *info, FuncaoComparacao pf
 {
     if (raiz == NULL)
         return NULL;
-
     int comparacao = pfc(info, raiz->info);
 
     if (comparacao > 0)
@@ -53,16 +52,16 @@ pNohArvore ExcluirInfoRecursivo(pNohArvore raiz, void *info, FuncaoComparacao pf
         while (atual != temp)
         {
             paiTemp = atual;
-            atual = atual->esquerda ? atual->esquerda : atual->direita;
+            if (atual->esquerda != NULL)
+                atual = atual->esquerda;
+            else
+                atual = atual->direita;
         }
+
         if (paiTemp->esquerda == atual)
-        {
             paiTemp->esquerda = tempDir;
-        }
         else
-        {
             paiTemp->direita = tempDir;
-        }
 
         // Liberar a memória do nó excluído
         free(raiz->info);
@@ -87,8 +86,26 @@ int ExcluirInfo(pDArvore arvore, void *info, FuncaoComparacao pfc)
         return -1; // Árvore vazia
 
     void *auxiliar = NULL;
-    arvore->raiz = ExcluirInfoRecursivo(arvore->raiz, info, pfc, &auxiliar);
+    pNohArvore novaRaiz = ExcluirInfoRecursivo(arvore->raiz, info, pfc, &auxiliar);
+
+    if (novaRaiz == NULL)
+    {
+        // Se a nova raiz for NULL, significa que a árvore ficou vazia após a exclusão
+        free(arvore);
+        arvore = NULL;
+    }
+    else
+    {
+        // Caso contrário, atualiza a raiz da árvore
+        arvore->raiz = novaRaiz;
+    }
+
+    // Libera a memória alocada para o valor excluído
+    if (auxiliar != NULL)
+    {
+        free(auxiliar);
+    }
+
     return 0; // Exclusão bem-sucedida
 }
-
 #endif // EXCLUIRINFO_ARVORE_BINARIA_H
