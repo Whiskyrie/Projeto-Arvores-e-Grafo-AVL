@@ -25,7 +25,7 @@ pDArvore ConstroiArvore(int raiz)
 int main()
 {
     pDArvore pArvoreInt;
-    int raiz, opcao, valorBuscado;
+    int raiz, opcao, valorBuscado, valorInserido;
 
     printf("Informe a raiz da arvore: ");
     scanf("%d", &raiz);
@@ -41,6 +41,7 @@ int main()
         printf("4. Calcular Quantidade de Nos\n");
         printf("5. Buscar Valor na Arvore\n");
         printf("6. Remover Valor da Arvore\n");
+        printf("7. Inserir Valor da Arvore\n");
         printf("0. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -82,6 +83,12 @@ int main()
             {
                 printf("Falha ao remover o valor %d.\n", valorBuscado);
             }
+            break;
+        case 7:
+            printf("Digite o valor a ser inserido: ");
+            scanf("%d", &valorInserido);
+            IncluirInfo(pArvoreInt, AlocaInt(valorInserido), ComparaInt);
+            printf("Valor %d inserido na arvore!\n", valorInserido);
             break;
         case 0:
             printf("Saindo...\n");

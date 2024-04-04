@@ -38,37 +38,21 @@ pNohArvore ExcluirInfoRecursivo(pNohArvore raiz, void *info, FuncaoComparacao pf
         }
 
         // Caso 3: O nó a ser excluído tem os dois filhos
-        pNohArvore temp = EncontrarMenor(raiz->direita);
-        *auxiliar = raiz->info; // Armazenar o valor do nó a ser excluído
-
-        // Atualizar os ponteiros do nó 'temp' para manter a estrutura da árvore
-        pNohArvore tempDir = temp->direita;
-        temp->esquerda = raiz->esquerda;
-        temp->direita = raiz->direita;
-
-        // Remover os nós da sub-árvore direita que agora estão duplicados
-        pNohArvore paiTemp = raiz;
-        pNohArvore atual = raiz->direita;
-        while (atual != temp)
-        {
-            paiTemp = atual;
-            if (atual->esquerda != NULL)
-                atual = atual->esquerda;
-            else
-                atual = atual->direita;
-        }
-
-        if (paiTemp->esquerda == atual)
-            paiTemp->esquerda = tempDir;
         else
-            paiTemp->direita = tempDir;
+        {
+            pNohArvore aux = raiz->direita;
+            while (aux->esquerda != NULL)
+            {
+                aux = aux->esquerda;
+            }
+            // Troca as informações
+            void *temp_info = raiz->info;
+            raiz->info = aux->info;
+            aux->info = temp_info;
 
-        // Liberar a memória do nó excluído
-        free(raiz->info);
-        free(raiz);
-
-        // Atualizar a raiz com o novo nó
-        raiz = temp;
+            // Exclui o nó sucessor da subárvore direita
+            raiz->direita = ExcluirInfoRecursivo(raiz->direita, info, pfc, auxiliar);
+        }
     }
 
     // Obter o fator de balanceamento desta árvore
