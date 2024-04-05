@@ -49,6 +49,5 @@ int QuantidadeNohs(pDArvore);
 int EhFolha(pDArvore, void *, FuncaoComparacao);
 int ArvoreVazia(pDArvore);
 pNohArvore EncontrarMenor(pNohArvore raiz);
-pNohArvore EncontrarMaior(pNohArvore raiz);
 void DesenhaArvore(pDArvore, FuncaoImpressao);
 #endif
