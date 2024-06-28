@@ -7,6 +7,9 @@
         "1_criararvore.h": "c",
         "0_struct_arvore.h": "c",
         "3_excluirinfo.h": "c",
-        "15_balancear.h": "c"
+        "15_balancear.h": "c",
+        "arvorebinariabalanceada.h": "c",
+        "14_fatordebalanceamento.h": "c",
+        "stdio.h": "c"
     }
 }

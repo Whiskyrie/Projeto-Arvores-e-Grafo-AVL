@@ -27,8 +27,6 @@
 
 #include "Operacoes/ArvoreBinaria/11_Altura.h"
 
-#include "Operacoes/ArvoreBinaria/12_EncontraMenor.h"
-
 #include "Operacoes/ArvoreBinaria/14_FatorDeBalanceamento.h"
 
 #include "Operacoes/ArvoreBinaria/15_Balancear.h"
