@@ -7,6 +7,8 @@
 
 #include "Operacoes/1_CriarArvore.h"
 
+#include "Operacoes/ArvoreBinaria/1_RealizarBenchmark.h"
+
 #include "Operacoes/ArvoreBinaria/2_IncluirInfo.h"
 
 #include "Operacoes/ArvoreBinaria/3_ExcluirInfo.h"

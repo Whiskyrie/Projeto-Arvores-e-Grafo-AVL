@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "Utils.h"
 #include "ArvoreBinariaBalanceada.h"
 
@@ -89,6 +90,10 @@ int main()
             scanf("%d", &valorInserido);
             IncluirInfo(pArvoreInt, AlocaInt(valorInserido), ComparaInt);
             printf("Valor %d inserido na arvore!\n", valorInserido);
+            break;
+        case 8:
+            printf("Benchmark!");
+            realizarBenchmark(pArvoreInt);
             break;
         case 0:
             printf("Saindo...\n");

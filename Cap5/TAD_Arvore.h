@@ -41,9 +41,11 @@ void PreOrdem(pNohArvore, FuncaoImpressao);
 void PosOrdem(pNohArvore, FuncaoImpressao);
 
 int Altura(pDArvore);
+int AlturaRecursiva(pNohArvore raiz);
 int Grau(pDArvore);
 pNohArvore BalancearArvore(pNohArvore raiz);
 int Nivel(pDArvore, void *, FuncaoComparacao);
+void realizarBenchmark(pDArvore arvore);
 int QuantidadeFolhas(pDArvore);
 int QuantidadeNohs(pDArvore);
 int EhFolha(pDArvore, void *, FuncaoComparacao);
